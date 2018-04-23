@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Dashboard" />
+  <DataSources>
+    <OLAPDataSource ComponentName="oLAPDataSource1" Name="OLAP Data Source" ConnectionName="olapConnection" />
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot" DataSource="oLAPDataSource1">
+      <DataItems>
+        <Measure DataMember="[Measures].[Sales Amount]" UniqueName="DataItem0">
+          <NumericFormat FormatType="Currency" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="[Sales Channel].[Sales Channel].[Sales Channel]" UniqueName="DataItem1" />
+        <Dimension DataMember="[Sales Territory].[Sales Territory Group].[Sales Territory Group]" UniqueName="DataItem2" />
+        <Dimension DataMember="[Sales Territory].[Sales Territory Country].[Sales Territory Country]" UniqueName="DataItem3" />
+        <Dimension DataMember="[Sales Territory].[Sales Territory Region].[Sales Territory Region]" UniqueName="DataItem4" />
+      </DataItems>
+      <Columns>
+        <Column UniqueName="DataItem1" />
+      </Columns>
+      <Rows>
+        <Row UniqueName="DataItem2" />
+        <Row UniqueName="DataItem3" />
+        <Row UniqueName="DataItem4" />
+      </Rows>
+      <Values>
+        <Value UniqueName="DataItem0" />
+      </Values>
+    </Pivot>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart" DataSource="oLAPDataSource1">
+      <DataItems>
+        <Dimension DataMember="[Sales Territory].[Sales Territory Country].[Sales Territory Country]" UniqueName="DataItem0" />
+        <Measure DataMember="[Measures].[Sales Amount]" UniqueName="DataItem1">
+          <NumericFormat FormatType="Currency" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Arguments>
+        <Argument UniqueName="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value UniqueName="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="pivotDashboardItem1" />
+      <LayoutItem DashboardItem="chartDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
